@@ -10,10 +10,21 @@ import UIKit
 class HomeCell: UICollectionViewCell {
     
     static let indentifier = "HomeCell"
+    let imageProvider = ImageProvider()
+    
     var viewData: HomeModels.CellViewData? {
         didSet {
             imageView.image = viewData?.image
             nameLabel.text = viewData?.name
+            guard let imageURL = viewData?.imageURL else {
+                return
+            }
+            imageProvider.fetchImage(imageURL: imageURL) { [weak self] image in
+                guard let image = image else {
+                    return
+                }
+                self?.imageView.image = image
+            }
         }
     }
     
