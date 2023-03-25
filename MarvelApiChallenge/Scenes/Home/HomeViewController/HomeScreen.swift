@@ -9,7 +9,7 @@ import UIKit
 
 class HomeScreen: UIView {
     
-    lazy var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
@@ -19,42 +19,48 @@ class HomeScreen: UIView {
         return label
     }()
     
-    lazy var searchBar: UISearchBar = {
+    private var searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
         bar.placeholder = "Search the heroe"
         return bar
     }()
     
-    lazy var collectionView: UICollectionView = {
+    var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.showsVerticalScrollIndicator = false
         cv.backgroundColor = .clear
+        cv.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.indentifier)
         return cv
     }()
     
-    public func configProtocolsCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
+    func configProtocolsCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
         collectionView.delegate = delegate
         collectionView.dataSource = dataSource
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(titleLabel)
-        addSubview(searchBar)
-        addSubview(collectionView)
-        setupConstraints()
-        backgroundColor = .white
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension HomeScreen: ViewCode {
+    func setupHierarchy() {
+        addSubview(titleLabel)
+        addSubview(searchBar)
+        addSubview(collectionView)
+    }
     
-    private func setupConstraints() {
+    func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -72,7 +78,9 @@ class HomeScreen: UIView {
         ])
     }
     
+    func configureView() {
+        backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    }
 }
-
-
 
