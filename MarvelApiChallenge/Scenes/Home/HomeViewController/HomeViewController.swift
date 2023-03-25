@@ -29,16 +29,18 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchHeroes { (result: Result<[HomeModels.CellViewData], NetworkErrors>) in
-            switch result {
-            case .success(let heroes):
-                self.heroes = heroes
-                self.homeScreen.collectionView.reloadData()
-            case .failure(let failure):
-                // TODO: implementar alerta de erro
-                break
-            }
-        }
+        viewModel.fetchHeroes()
+    }
+}
+
+extension HomeViewController: HomeViewModelDelegate {
+    func presentSuccess(result: [HomeModels.CellViewData]) {
+        self.heroes = result
+        self.homeScreen.collectionView.reloadData()
+    }
+    
+    func presentError() {
+        print("error")
     }
 }
 
