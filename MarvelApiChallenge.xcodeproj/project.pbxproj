@@ -10,6 +10,12 @@
 		903A919229CD275C00176678 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A919129CD275C00176678 /* HomeViewController.swift */; };
 		903A919529CD289000176678 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A919429CD289000176678 /* HomeScreen.swift */; };
 		9059D06429CE4E9A00E32952 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9059D06329CE4E9A00E32952 /* UIView+Extension.swift */; };
+		90907E3929CE6A5F0088F9CE /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E3829CE6A5F0088F9CE /* HomeCell.swift */; };
+		90907E3E29CE6F7A0088F9CE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E3D29CE6F7A0088F9CE /* Images.swift */; };
+		90907E4029CE70630088F9CE /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E3F29CE70630088F9CE /* ViewCode.swift */; };
+		90907E4329CE73A70088F9CE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E4229CE73A70088F9CE /* Image.swift */; };
+		90907E4529CE75990088F9CE /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E4429CE75990088F9CE /* Hero.swift */; };
+		90907E4729CE77D90088F9CE /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E4629CE77D90088F9CE /* HomeModels.swift */; };
 		90D7BD9629CBDA0E0031A42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BD9529CBDA0E0031A42F /* AppDelegate.swift */; };
 		90D7BD9829CBDA0E0031A42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BD9729CBDA0E0031A42F /* SceneDelegate.swift */; };
 		90D7BD9F29CBDA100031A42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BD9E29CBDA100031A42F /* Assets.xcassets */; };
@@ -20,6 +26,12 @@
 		903A919129CD275C00176678 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		903A919429CD289000176678 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		9059D06329CE4E9A00E32952 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		90907E3829CE6A5F0088F9CE /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		90907E3D29CE6F7A0088F9CE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		90907E3F29CE70630088F9CE /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		90907E4229CE73A70088F9CE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		90907E4429CE75990088F9CE /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		90907E4629CE77D90088F9CE /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		90D7BD9229CBDA0E0031A42F /* MarvelApiChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApiChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D7BD9529CBDA0E0031A42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90D7BD9729CBDA0E0031A42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,29 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		903A918F29CD248800176678 /* HeroesList */ = {
+		903A918F29CD248800176678 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				903A919029CD272400176678 /* HomeViewController */,
 			);
-			path = HeroesList;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		903A919029CD272400176678 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				903A919329CD286300176678 /* Screen */,
+				903A919429CD289000176678 /* HomeScreen.swift */,
 				903A919129CD275C00176678 /* HomeViewController.swift */,
+				90907E3829CE6A5F0088F9CE /* HomeCell.swift */,
+				90907E4629CE77D90088F9CE /* HomeModels.swift */,
 			);
 			path = HomeViewController;
-			sourceTree = "<group>";
-		};
-		903A919329CD286300176678 /* Screen */ = {
-			isa = PBXGroup;
-			children = (
-				903A919429CD289000176678 /* HomeScreen.swift */,
-			);
-			path = Screen;
 			sourceTree = "<group>";
 		};
 		9059D06229CE4DE500E32952 /* Extension */ = {
@@ -70,6 +76,32 @@
 				9059D06329CE4E9A00E32952 /* UIView+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		90907E3629CE69AB0088F9CE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				903A918F29CD248800176678 /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		90907E3C29CE6F5E0088F9CE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				90907E3D29CE6F7A0088F9CE /* Images.swift */,
+				90907E3F29CE70630088F9CE /* ViewCode.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		90907E4129CE739A0088F9CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				90907E4229CE73A70088F9CE /* Image.swift */,
+				90907E4429CE75990088F9CE /* Hero.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		90D7BD8929CBDA0E0031A42F = {
@@ -91,8 +123,10 @@
 		90D7BD9429CBDA0E0031A42F /* MarvelApiChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				90907E4129CE739A0088F9CE /* Models */,
+				90907E3C29CE6F5E0088F9CE /* Utils */,
+				90907E3629CE69AB0088F9CE /* Scenes */,
 				9059D06229CE4DE500E32952 /* Extension */,
-				903A918F29CD248800176678 /* HeroesList */,
 				90D7BD9529CBDA0E0031A42F /* AppDelegate.swift */,
 				90D7BD9729CBDA0E0031A42F /* SceneDelegate.swift */,
 				90D7BD9E29CBDA100031A42F /* Assets.xcassets */,
@@ -172,11 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90907E3E29CE6F7A0088F9CE /* Images.swift in Sources */,
+				90907E4329CE73A70088F9CE /* Image.swift in Sources */,
 				903A919229CD275C00176678 /* HomeViewController.swift in Sources */,
 				903A919529CD289000176678 /* HomeScreen.swift in Sources */,
 				9059D06429CE4E9A00E32952 /* UIView+Extension.swift in Sources */,
+				90907E4529CE75990088F9CE /* Hero.swift in Sources */,
 				90D7BD9629CBDA0E0031A42F /* AppDelegate.swift in Sources */,
+				90907E3929CE6A5F0088F9CE /* HomeCell.swift in Sources */,
 				90D7BD9829CBDA0E0031A42F /* SceneDelegate.swift in Sources */,
+				90907E4029CE70630088F9CE /* ViewCode.swift in Sources */,
+				90907E4729CE77D90088F9CE /* HomeModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
