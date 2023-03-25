@@ -10,23 +10,35 @@ import UIKit
 class HomeViewController: UIViewController {
         
     var homeScreen = HomeScreen()
+    var heroes = [HomeModels.CellViewData]()
+    var viewModel: HomeViewModel
     
-    let heroes = [
-        HomeModels.CellViewData(name: "Capitão America", image: UIImage(named: Images.banner)),
-        HomeModels.CellViewData(name: "Pardal", image: UIImage(named: Images.banner)),
-        HomeModels.CellViewData(name: "Omereo", image: UIImage(named: Images.banner)),
-        HomeModels.CellViewData(name: "Pirata", image: UIImage(named: Images.banner)),
-        HomeModels.CellViewData(name: "Martelo", image: UIImage(named: Images.banner)),
-        HomeModels.CellViewData(name: "Antena", image: UIImage(named: Images.banner)),
-    ]
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
-       view = homeScreen
+        view = homeScreen
         homeScreen.configProtocolsCollectionView(delegate: self, dataSource: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.fetchHeroes { (result: Result<[HomeModels.CellViewData], NetworkErrors>) in
+            switch result {
+            case .success(let heroes):
+                self.heroes = heroes
+                self.homeScreen.collectionView.reloadData()
+            case .failure(let failure):
+                // TODO: implementar alerta de erro
+                break
+            }
+        }
     }
 }
 
