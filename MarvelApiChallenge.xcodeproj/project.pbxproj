@@ -103,6 +103,7 @@
 		90907E3629CE69AB0088F9CE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				90CB807529D507B900C27555 /* HomeDetail */,
 				903A918F29CD248800176678 /* Home */,
 			);
 			path = Scenes;
@@ -135,6 +136,13 @@
 				90907E5429CE8E760088F9CE /* NetworkProvider.swift */,
 			);
 			path = Netwok;
+			sourceTree = "<group>";
+		};
+		90CB807529D507B900C27555 /* HomeDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeDetail;
 			sourceTree = "<group>";
 		};
 		90D7BD8929CBDA0E0031A42F = {

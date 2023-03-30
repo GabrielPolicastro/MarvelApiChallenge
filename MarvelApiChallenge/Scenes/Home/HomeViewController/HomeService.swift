@@ -5,7 +5,11 @@
 //  Created by Gabriel Policastro on 24/03/23.
 //
 
-class HomeService {
+protocol HomeServiceLogic: AnyObject {
+    func fetchHeroes(completion: @escaping (Result<[Hero], NetworkErrors>) -> Void)
+}
+
+class HomeService: HomeServiceLogic {
     
     let networkProvider: NetworkProvider<HomeModels.GetHeroesRequest>
     

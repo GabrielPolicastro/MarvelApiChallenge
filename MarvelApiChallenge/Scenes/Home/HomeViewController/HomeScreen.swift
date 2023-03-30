@@ -19,10 +19,11 @@ class HomeScreen: UIView {
         return label
     }()
     
-    private var searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
         bar.placeholder = "Search the heroe"
+        bar.delegate = self
         return bar
     }()
     
@@ -36,6 +37,8 @@ class HomeScreen: UIView {
         cv.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.indentifier)
         return cv
     }()
+  
+    var didChangeTextAction: ((String) -> Void)?
     
     func configProtocolsCollectionView(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
         collectionView.delegate = delegate
@@ -84,3 +87,8 @@ extension HomeScreen: ViewCode {
     }
 }
 
+extension HomeScreen: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        didChangeTextAction?(searchText)
+    }
+}

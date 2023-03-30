@@ -13,6 +13,7 @@ final class HomeFactory {
         let service = HomeService(networkProvider: provider)
         let viewModel = HomeViewModel(homeService: service)
         let viewController = HomeViewController(viewModel: viewModel)
+        viewModel.setDelegate(viewController)
         return viewController
     }
 }
