@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-        
+    
     var homeScreen = HomeScreen()
     var viewModel: HomeViewModel
     
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = homeScreen
         homeScreen.configProtocolsCollectionView(delegate: self, dataSource: self)
@@ -28,11 +28,17 @@ class HomeViewController: UIViewController {
             self?.viewModel.heroesSearch(searchText: searchText)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchHeroes()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.hidesBackButton = true
+    }
+    
 }
 
 extension HomeViewController: HomeViewModelDelegate {
@@ -56,6 +62,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         cell.viewData = viewModel.heroesFilter[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = HomeDetailViewController(hero: viewModel.heroes[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

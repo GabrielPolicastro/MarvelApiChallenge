@@ -25,6 +25,9 @@
 		90907E5D29CE92CD0088F9CE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E5C29CE92CD0088F9CE /* HomeViewModel.swift */; };
 		90907E5F29CE935F0088F9CE /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E5E29CE935F0088F9CE /* HomeService.swift */; };
 		90907E6129CE9C5C0088F9CE /* HomeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90907E6029CE9C5C0088F9CE /* HomeFactory.swift */; };
+		90CB807729D5099500C27555 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CB807629D5099500C27555 /* HomeDetailViewController.swift */; };
+		90CB807929D509C900C27555 /* HomeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CB807829D509C900C27555 /* HomeDetailScreen.swift */; };
+		90CB807E29D7218200C27555 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CB807D29D7218200C27555 /* DetailViewModel.swift */; };
 		90D7BD9629CBDA0E0031A42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BD9529CBDA0E0031A42F /* AppDelegate.swift */; };
 		90D7BD9829CBDA0E0031A42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BD9729CBDA0E0031A42F /* SceneDelegate.swift */; };
 		90D7BD9F29CBDA100031A42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BD9E29CBDA100031A42F /* Assets.xcassets */; };
@@ -49,6 +52,9 @@
 		90907E5C29CE92CD0088F9CE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		90907E5E29CE935F0088F9CE /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		90907E6029CE9C5C0088F9CE /* HomeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFactory.swift; sourceTree = "<group>"; };
+		90CB807629D5099500C27555 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
+		90CB807829D509C900C27555 /* HomeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailScreen.swift; sourceTree = "<group>"; };
+		90CB807D29D7218200C27555 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		90D7BD9229CBDA0E0031A42F /* MarvelApiChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApiChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D7BD9529CBDA0E0031A42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90D7BD9729CBDA0E0031A42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,9 @@
 		90CB807529D507B900C27555 /* HomeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				90CB807629D5099500C27555 /* HomeDetailViewController.swift */,
+				90CB807829D509C900C27555 /* HomeDetailScreen.swift */,
+				90CB807D29D7218200C27555 /* DetailViewModel.swift */,
 			);
 			path = HomeDetail;
 			sourceTree = "<group>";
@@ -254,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90CB807729D5099500C27555 /* HomeDetailViewController.swift in Sources */,
 				90907E3E29CE6F7A0088F9CE /* Images.swift in Sources */,
 				90907E4329CE73A70088F9CE /* Image.swift in Sources */,
 				903A919229CD275C00176678 /* HomeViewController.swift in Sources */,
@@ -262,6 +272,7 @@
 				9059D06429CE4E9A00E32952 /* UIView+Extension.swift in Sources */,
 				90907E5629CE8E760088F9CE /* NetworkProvider.swift in Sources */,
 				90907E4529CE75990088F9CE /* Hero.swift in Sources */,
+				90CB807E29D7218200C27555 /* DetailViewModel.swift in Sources */,
 				902FB11129CEA72100A73503 /* ImageProvider.swift in Sources */,
 				90D7BD9629CBDA0E0031A42F /* AppDelegate.swift in Sources */,
 				90907E6129CE9C5C0088F9CE /* HomeFactory.swift in Sources */,
@@ -271,6 +282,7 @@
 				90D7BD9829CBDA0E0031A42F /* SceneDelegate.swift in Sources */,
 				90907E5929CE8E830088F9CE /* Constants.swift in Sources */,
 				902FB11329CEAF1A00A73503 /* UIImage+color.swift in Sources */,
+				90CB807929D509C900C27555 /* HomeDetailScreen.swift in Sources */,
 				90907E4029CE70630088F9CE /* ViewCode.swift in Sources */,
 				90907E4729CE77D90088F9CE /* HomeModels.swift in Sources */,
 			);

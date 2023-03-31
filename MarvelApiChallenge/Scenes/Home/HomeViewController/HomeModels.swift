@@ -49,5 +49,4 @@ struct HomeModels {
                                     imageURL: URL(string: hero.thumbnail.getImageURL()))
         }
     }
-    
 }
