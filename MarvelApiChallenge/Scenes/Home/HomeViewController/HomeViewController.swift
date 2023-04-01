@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-        
+    
     var homeScreen = HomeScreen()
     var viewModel: HomeViewModel
     
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = homeScreen
         homeScreen.configProtocolsCollectionView(delegate: self, dataSource: self)
@@ -28,10 +28,15 @@ class HomeViewController: UIViewController {
             self?.viewModel.heroesSearch(searchText: searchText)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchHeroes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.hidesBackButton = true
     }
 }
 
@@ -47,15 +52,26 @@ extension HomeViewController: HomeViewModelDelegate {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.heroesFilter.count
+        return viewModel.heroesViewData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = homeScreen.collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.indentifier, for: indexPath) as? HomeCell else {
             return UICollectionViewCell()
         }
-        cell.viewData = viewModel.heroesFilter[indexPath.row]
+        cell.viewData = viewModel.heroesViewData[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCell,
+              let image = cell.imageView.image else {
+            return
+        }
+        let hero = viewModel.heroesFiltered[indexPath.row]
+        let heroDetailViewData = HomeDetailModels.createViewData(hero: hero, image: image)
+        let vc = HomeDetailViewController(hero: heroDetailViewData)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

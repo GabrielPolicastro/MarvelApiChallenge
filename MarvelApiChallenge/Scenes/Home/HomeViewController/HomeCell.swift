@@ -28,7 +28,7 @@ class HomeCell: UICollectionViewCell {
         }
     }
     
-    private lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.contentMode = .scaleAspectFill
