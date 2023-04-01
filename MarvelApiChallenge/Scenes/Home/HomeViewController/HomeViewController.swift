@@ -38,7 +38,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
-    
 }
 
 extension HomeViewController: HomeViewModelDelegate {
@@ -53,19 +52,25 @@ extension HomeViewController: HomeViewModelDelegate {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.heroesFilter.count
+        return viewModel.heroesViewData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = homeScreen.collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.indentifier, for: indexPath) as? HomeCell else {
             return UICollectionViewCell()
         }
-        cell.viewData = viewModel.heroesFilter[indexPath.row]
+        cell.viewData = viewModel.heroesViewData[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = HomeDetailViewController(hero: viewModel.heroes[indexPath.row])
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCell,
+              let image = cell.imageView.image else {
+            return
+        }
+        let hero = viewModel.heroesFiltered[indexPath.row]
+        let heroDetailViewData = HomeDetailModels.createViewData(hero: hero, image: image)
+        let vc = HomeDetailViewController(hero: heroDetailViewData)
         navigationController?.pushViewController(vc, animated: true)
     }
     

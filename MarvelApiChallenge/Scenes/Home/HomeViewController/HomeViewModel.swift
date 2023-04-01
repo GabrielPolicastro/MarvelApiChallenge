@@ -15,8 +15,8 @@ class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
     let homeService: HomeServiceLogic
     var heroes = [Hero]()
-    var heroesFilter = [HomeModels.CellViewData]()
-    
+    var heroesFiltered = [Hero]()
+    var heroesViewData = [HomeModels.CellViewData]()
     
     init(homeService: HomeServiceLogic) {
         self.homeService = homeService
@@ -32,7 +32,8 @@ class HomeViewModel {
             case .success(let success):
                 let response = HomeModels.createViewModel(success)
                 self?.heroes = success
-                self?.heroesFilter = response
+                self?.heroesFiltered = success
+                self?.heroesViewData = response
                 self?.delegate?.presentSuccess(result: response)
             case .failure:
                 self?.delegate?.presentError()
@@ -45,12 +46,14 @@ class HomeViewModel {
             
             let heroesList = heroes.filter({ hero in
                 return hero.name.lowercased().contains(searchText.lowercased())
-            }).sorted{$0.name < $1.name}
-            heroesFilter = HomeModels.createViewModel(heroesList)
+            }).sorted { $0.name < $1.name }
+            heroesFiltered = heroesList
+            heroesViewData = HomeModels.createViewModel(heroesList)
         } else {
-            heroesFilter = HomeModels.createViewModel(heroes)
+            heroesFiltered = heroes
+            heroesViewData = HomeModels.createViewModel(heroes)
         }
-       self.delegate?.presentSuccess(result: heroesFilter)
+       self.delegate?.presentSuccess(result: heroesViewData)
    }
 }
 

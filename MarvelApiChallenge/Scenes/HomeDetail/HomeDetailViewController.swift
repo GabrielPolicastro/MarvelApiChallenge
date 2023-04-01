@@ -10,10 +10,10 @@ import UIKit
 class HomeDetailViewController: UIViewController {
     
     var homeDetailScreen = HomeDetailScreen()
-    var detailViewModel: DetailViewModel
+    var viewData: HomeDetailModels.HomeDetailViewData
     
-    init(hero: Hero) {
-        self.detailViewModel = DetailViewModel(hero: hero)
+    init(hero: HomeDetailModels.HomeDetailViewData) {
+        viewData = hero
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,13 +24,13 @@ class HomeDetailViewController: UIViewController {
     override func loadView() {
         view = homeDetailScreen
         self.view = self.homeDetailScreen
+        homeDetailScreen.viewData = viewData
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animate(withDuration: 1.0) {
-            self.homeDetailScreen.frame.origin.x += 100
-        }
     }
 }
+    
+
     

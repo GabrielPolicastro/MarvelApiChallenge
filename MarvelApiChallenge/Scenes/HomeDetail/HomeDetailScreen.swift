@@ -7,7 +7,16 @@
 
 import UIKit
 
+
 class HomeDetailScreen: UIView {
+    
+    var viewData: HomeDetailModels.HomeDetailViewData? {
+        didSet {
+            nameLabel.text = viewData?.name
+            imageView.image = viewData?.image
+            textDescriptionLabel.text = viewData?.description
+        }
+    }
     
     private lazy var cardView: UIView = {
         let view = UIView()
@@ -15,11 +24,11 @@ class HomeDetailScreen: UIView {
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.shadowColor = UIColor(red: 0/255, green: 255/255, blue: 10/255, alpha: 1).cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 2)
-        view.layer.shadowOpacity = 0.15
-        view.layer.shadowRadius = 4
-        view.layer.masksToBounds = false
+//        view.layer.shadowColor = UIColor(red: 0/255, green: 255/255, blue: 10/255, alpha: 1).cgColor
+//        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        view.layer.shadowOpacity = 0.15
+//        view.layer.shadowRadius = 4
+//        view.layer.masksToBounds = false
         return view
     }()
     
@@ -28,32 +37,33 @@ class HomeDetailScreen: UIView {
         img.translatesAutoresizingMaskIntoConstraints = false
         img.contentMode = .scaleToFill
         img.layer.cornerRadius = 10
+        img.clipsToBounds = true
         return img
     }()
     
-    private lazy var favoritedImageView: UIImageView = {
-        let img = UIImageView()
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.contentMode = .scaleToFill
-        img.layer.cornerRadius = 10
-        return img
+    lazy var favoritedBtn: UIButton = {
+        var btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setBackgroundImage(UIImage(named: "favorited")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .yellow
+        return btn
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 32, weight: .bold)
         return label
     }()
     
     private lazy var textDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textAlignment = .justified
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = .label
+        label.textColor = .black
         return label
     }()
     
@@ -67,6 +77,29 @@ class HomeDetailScreen: UIView {
         return stack
     }()
     
+    private let gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.locations = [0.6, 1]
+        return gradient
+    }()
+    
+    private let selectMonthLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.locations = [0.65, 1]
+        return gradient
+    }()
+    
+    private func setupGradient() {
+        let initialColor = UIColor.clear
+        let finalColor = UIColor.black.withAlphaComponent(0.7)
+        gradientLayer.colors = [initialColor.cgColor, finalColor.cgColor]
+        gradientLayer.frame = bounds
+        selectMonthLayer.colors = [initialColor.cgColor, finalColor.cgColor]
+        selectMonthLayer.frame = bounds
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -79,32 +112,35 @@ class HomeDetailScreen: UIView {
 
 extension HomeDetailScreen: ViewCode {
     func setupHierarchy() {
+        layer.addSublayer(gradientLayer)
         cardView.addSubview(imageView)
-        imageView.addSubview(favoritedImageView)
-        imageView.addSubview(nameLabel)
+        cardView.addSubview(favoritedBtn)
+        cardView.layer.addSublayer(selectMonthLayer)
+        addSubview(cardView)
         addSubview(descriptionStackView)
+        addSubview(nameLabel)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             cardView.leadingAnchor.constraint(equalTo: leadingAnchor),
             cardView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cardView.heightAnchor.constraint(equalToConstant: 200),
+            cardView.heightAnchor.constraint(equalToConstant: 400),
             
             imageView.topAnchor.constraint(equalTo: cardView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor),
             
-            favoritedImageView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16),
-            favoritedImageView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -16),
-            favoritedImageView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -32),
-            
-            nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8),
-            nameLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -16),
-            nameLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -16),
+            favoritedBtn.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            favoritedBtn.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -42),
+            favoritedBtn.heightAnchor.constraint(equalToConstant: 45),
+            favoritedBtn.widthAnchor.constraint(equalToConstant: 45),
+                        
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nameLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -16),
             
             descriptionStackView.topAnchor.constraint(equalTo: cardView.bottomAnchor),
             descriptionStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -122,3 +158,13 @@ extension HomeDetailScreen: ViewCode {
         backgroundColor = .white
     }
 }
+
+
+
+
+//    lazy var overlayView: UIView = {
+//        let v = UIView()
+//        v.translatesAutoresizingMaskIntoConstraints = false // n eh necessario com snpkit
+//        v.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+//        return v
+//    }()
