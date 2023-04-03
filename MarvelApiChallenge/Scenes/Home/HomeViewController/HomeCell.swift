@@ -43,6 +43,24 @@ class HomeCell: UICollectionViewCell {
         return label
     }()
     
+    private let gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.locations = [0.4, 0.8]
+        return gradient
+    }()
+    
+    private func setupGradient() {
+        let initialColor = UIColor.clear
+        let finalColor = UIColor.black.withAlphaComponent(0.8)
+        gradientLayer.colors = [initialColor.cgColor, finalColor.cgColor]
+        gradientLayer.frame = imageView.bounds
+    }
+    
+    override func layoutSubviews() {
+        setupGradient()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -56,6 +74,7 @@ class HomeCell: UICollectionViewCell {
 extension HomeCell: ViewCode {
     func setupHierarchy() {
         addSubview(imageView)
+        imageView.layer.addSublayer(gradientLayer)
         addSubview(nameLabel)
     }
     
